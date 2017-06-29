@@ -15,9 +15,9 @@ namespace Lab5
             while (yesNo == "Y" || yesNo == "y")
             {
                 Console.WriteLine();
-                int numDice = GetInput("How many dice? ");
+                int numDice = GetInput("How many dice? ",1,255);
                 int[] rollDice = new int[numDice];
-                int dieSide = GetInput("How many sides should each die have? ");
+                int dieSide = GetInput("How many sides should each die have? ",1,255);
                 dieSide++;
                 //foreach (int i in rollDice)
                 for(int i = 0; i < rollDice.Length; i++)
@@ -58,7 +58,7 @@ namespace Lab5
                     Console.WriteLine("Die"+(j+1)+": " + roll[j]);
                 }
         }
-        public static int GetInput(string question)
+        public static int GetInput(string question, int bottomNum, int topNum)
         {
             bool validInput = false;
             int exitNum = 0;
@@ -66,7 +66,7 @@ namespace Lab5
             {
                 Console.Write(question);
                 bool inp = int.TryParse(Console.ReadLine(), out exitNum);
-                if (!inp || exitNum < 1)
+                if (!inp || exitNum < bottomNum || exitNum > topNum)
                 {
                     Console.WriteLine("That's not valid input!");
                 }
